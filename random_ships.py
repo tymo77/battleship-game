@@ -74,6 +74,7 @@ def place_n_ships(length,size,no_ships):
 			if level_counter[ship_index]>=100:
 				level_counter[ship_index]=0;
 				ship_index-=1;
+				ship_spaces.pop(ship_index);
 	
 					
 		#if not, try again
