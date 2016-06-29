@@ -78,5 +78,5 @@ def place_n_ships(length,size,no_ships):
 	
 					
 		#if not, try again
-	return convert_to_array_array(ship_spaces)
+	return ship_spaces
 	

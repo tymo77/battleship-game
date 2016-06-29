@@ -4,6 +4,7 @@ quit=False
 from random import randint
 import winsound
 from random_ships import *
+
 #welcome
 print("Welcome to Battleship 2.0\n")
 print("X\'s correspond to places you have fired. O\'s are places you have not fired. *\'s are hits")
@@ -55,7 +56,7 @@ def print_board(board):
 #start game, get ship position, print position
 print("\nLet's play Battleship!\n")
 print_board(board)
-ship_space=determ_ship_space(ship_length,size)
+ship_space=place_n_ships(ship_length,size,5)
 print(ship_space)
 
 
@@ -105,11 +106,13 @@ while quit==False:
         
     #check hit miss or repeat and return resultsship
     try: 
-        ship_space.remove([guess_row,guess_col])
+        sum(ship_space,[]).remove((guess_row,guess_col))
         winsound.PlaySound("media\\hit.wav", winsound.SND_ALIAS)
         print("You hit my ship!")
-        board[guess_row][guess_col] = "*"
-        
+        board[guess_row][guess_col] = "*";
+        for i in range(len(ship_space)):
+            if not set(ship_space[i]).isdisjoint(set([(guess_row,guess_col)])):
+                ship_space[i].remove((guess_row,guess_col));
     except:
         if (guess_row < 0 or guess_row > size-1) or (guess_col < 0 or guess_col > size-1):
             print("Oops, that's not even in the ocean.")
