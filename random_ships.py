@@ -30,3 +30,49 @@ def random_row(ship_space):
 
 def random_col(ship_space):
     return randint(0, len(ship_space[0]) - 1)
+	
+def convert_to_tuple_array(array_of_list_pairs):
+	temp=[]
+	for pair in array_of_list_pairs:
+		temp.append(tuple(pair));
+	return temp
+	
+def convert_to_array_array(array_of_tuples):
+	temp=[]
+	for pair in array_of_tuples:
+		temp.append(list(pair));
+	return temp
+	
+def place_n_ships(length,size,no_ships):
+	ship_spaces=[]; #ship_spaces is the place where all the selected ships and their addresses wait
+	level_counter=[0]*no_ships; #intialize the counter for each level
+	total_count=0; #intialize the total count
+	ship_index=0; #the ship index is the current level of the search tree where the full depth is no_ships
+	
+	while True:
+		#randomly pick a ship placement for ship
+		ship_space_guess=determ_ship_space(length,size);
+		ship_space_guess=convert_to_tuple_array(ship_space_guess);
+		all_ship_spaces=sum(ship_spaces,[]);
+		
+		level_counter[ship_index]+=1;
+		total_count+=1;
+		
+		#check if it fits
+		if set(ship_space_guess).isdisjoint(all_ship_spaces):
+			#add to list and move to next ship
+			ship_spaces.append(ship_space_guess);
+			if ship_index == no_ships:
+				break
+			else:
+				ship_index+=1;
+		else:
+			if total_count>=1000:
+				print("total count exceeded")
+				break
+			if level_counter[ship_index]>=100;
+				ship_index-=1;
+					
+		#if not, try again
+		#if we've tried more than a thousand times to place this ship, move back one ship and replace it
+	
