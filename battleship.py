@@ -57,7 +57,6 @@ else:
 		while True:
 			try:
 				ship_length=int(input('how long do you want ship '+str(ship+1)+'?\n'));
-				print(ship_length,size,ship_lengths)
 				if ship_length<=size and sum(ship_lengths)<=size**2 and ship_length>=0:
 					ship_lengths[ship]=ship_length;
 					break
@@ -95,7 +94,7 @@ def print_board(board):
 #start game, get ship position, print position
 print("\nLet's play Battleship!\n")
 print_board(board)
-ship_space=place_n_ships(ship_length,size,5)
+ship_space=place_n_ships(ship_lengths,size)
 print(ship_space)
 
 

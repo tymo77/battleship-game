@@ -1,5 +1,6 @@
 #functions for picking random ship positions
 from random import randint
+from random import shuffle
 
 def random_orientation():
     return randint(0,1)
@@ -43,18 +44,20 @@ def convert_to_array_array(array_of_tuples):
 		temp.append(list(pair));
 	return temp
 	
-def place_n_ships(length,size,no_ships):
+def place_n_ships(lengths,size):
+	no_ships=len(lengths);
 	ship_spaces=[]; #ship_spaces is the place where all the selected ships and their addresses wait
 	level_counter=[0]*no_ships; #intialize the counter for each level
 	total_count=0; #intialize the total count
 	ship_index=0; #the ship index is the current level of the search tree where the full depth is no_ships
+	shuffle(lengths)
 	
 	while True:
 		print(total_count)
 		level_counter[ship_index]+=1;
 		total_count+=1;
 		#randomly pick a ship placement for ship
-		ship_space_guess=determ_ship_space(length,size);
+		ship_space_guess=determ_ship_space(lengths[ship_index],size);
 		ship_space_guess=convert_to_tuple_array(ship_space_guess);
 		all_ship_spaces=sum(ship_spaces,[]);
 	
