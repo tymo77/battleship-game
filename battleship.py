@@ -105,7 +105,7 @@ turn=0;
 #loop runs while there is no quit signal
 while quit==False:
 	#check for win condition
-	if ship_space==[]:
+	if sum(ship_space,[])==[]:
 		winsound.PlaySound("media\\sink.wav", winsound.SND_ALIAS)
 		print("Congratulations you sunk my fleet!")
 		break
